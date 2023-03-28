@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    {% block page_title %}{% endblock %}
+
+    {% block page_head %}{% endblock %}
+    {% block page_content %}
+
+
+        <u1>
+            {% for each_course in courses %}
+            <li>{{ each_course }}</li>
+            {% endfor %}
+        </u1>
+        <h1>Ian Penny Website</h1>
+    {% endblock %}
+</head>
+
+    <div class="container">
+
+    <h1>Contact Me</h1>
+    {% if form_submitted %}
+        <div class="col-12">
+            <h2>Thank you for completing my form!</h2>
+        </div>
+        <div class="col-md-6">
+            <p>First Name:</p>
+        </div>
+        <div class="col-md-6">
+            <p>{{ request.form.get('first_name') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p>Last Name:</p>
+        </div>
+        <div class="col-md-6">
+             <p>{{ request.form.get('last_name') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p>Email:</p>
+        </div>
+        <div class="col-md-6">
+             <p>{{ request.form.get('email') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p>Phone Number:</p>
+        </div>
+        <div class="col-md-6">
+             <p>{{ request.form.get('number') }}</p>
+        </div>
+    {% else %}
+        <form class=" row g-3" action = "{{ url_for('contact') }}" method = 'POST'>
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" id="first_name" placeholder="Enter First Name" name="first_name">
+
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" id="last_name" placeholder="Last Name" name="last_name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+
+            </div>
+             <div class="form-group">
+                <label for="number">Phone Number</label>
+                <input type="number" class="form-control" id="number" placeholder="Enter Phone Number" name="number">
+
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    {% endif %}
+
+
+
+
+    </div>
+</body>
+</html>
